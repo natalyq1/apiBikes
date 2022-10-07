@@ -16,7 +16,7 @@ public class Reservation {
     private String status="created";
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "bikes")
     @JsonIgnoreProperties("reservations")
     private Bike bike;
 
@@ -25,7 +25,10 @@ public class Reservation {
     @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
 
-    private String score;
+    @OneToOne(cascade = {CascadeType.REMOVE},mappedBy="reservation")
+    @JsonIgnoreProperties("reservation")
+    private Score score;
+
 
     public Integer getIdReservation() {
         return idReservation;
@@ -59,14 +62,6 @@ public class Reservation {
         this.status = status;
     }
 
-    public Bike getBike() {
-        return bike;
-    }
-
-    public void setBike(Bike bike) {
-        this.bike = bike;
-    }
-
     public Client getClient() {
         return client;
     }
@@ -75,11 +70,19 @@ public class Reservation {
         this.client = client;
     }
 
-    public String getScore() {
+    public Bike getBike() {
+        return bike;
+    }
+
+    public void setBike(Bike bike) {
+        this.bike = bike;
+    }
+
+    public Score getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(Score score) {
         this.score = score;
     }
 }
