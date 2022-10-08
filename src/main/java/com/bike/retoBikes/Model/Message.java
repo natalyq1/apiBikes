@@ -16,7 +16,7 @@ public class Message implements Serializable {
 
 
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="bikeid")
     @JsonIgnoreProperties({"messages","reservations"})
     private Bike bike;
 

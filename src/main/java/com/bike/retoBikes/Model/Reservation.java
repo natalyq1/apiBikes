@@ -16,7 +16,7 @@ public class Reservation {
     private String status="created";
 
     @ManyToOne
-    @JoinColumn(name = "bikes")
+    @JoinColumn(name = "bike")
     @JsonIgnoreProperties("reservations")
     private Bike bike;
 

@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name="bikes")
+@Table(name="bike")
 public class Bike implements Serializable { //
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class Bike implements Serializable { //
     @JsonIgnoreProperties({"bike","client"})
     public List<Message> messages;
 
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "bike")
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "bike")
     @JsonIgnoreProperties({"bike","messages"})
     public List<Reservation> reservations;
 
