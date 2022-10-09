@@ -12,10 +12,11 @@ public class Bike implements Serializable { //
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
-    private String name;
     private String brand;
-    private Integer year;
+    private String name;
     private String description;
+    private Integer year;
+
 
     @ManyToOne
     @JoinColumn(name="categoryId")
@@ -38,14 +39,6 @@ public class Bike implements Serializable { //
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getBrand() {
         return brand;
     }
@@ -54,12 +47,12 @@ public class Bike implements Serializable { //
         this.brand = brand;
     }
 
-    public Integer getYear() {
-        return year;
+    public String getName() {
+        return name;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -68,6 +61,14 @@ public class Bike implements Serializable { //
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
     public Category getCategory() {
