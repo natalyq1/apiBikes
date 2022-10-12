@@ -1,0 +1,39 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bikes</title>
+    <base href="/"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js.bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="JavaScript/Functions.js"></script>
+</head>
+<body onload="listData()">
+<div>
+    <h1>Reto Bikes-Application</h1>
+    <table id="tableList"class="table-bordered text-center">
+
+    </table>
+
+    <h3>Agregar Bicicleta</h3>
+    <input class="form-control" type="text" placeholder="Nombre de la bici" id="name"/>
+    <input class="form-control" type="text" placeholder="Marca de la bici" id="brand"/>
+    <input class="form-control" type="number" placeholder="Año de la bici" id="year"/>
+    <input class="form-control" type="text" placeholder="Descripción de la bici" id="description"/>
+
+    <input class="form-control" type="number" placeholder="Categoría de la bici" id="categoryId"/>
+</div>
+
+<div style="text-align: center">
+    <button onclick="" class="btn btn-success">Guardar Bici</button>
+    <button onclick="" class="btn btn-primary">Volver</button>
+</div>
+
+</body>
+</html>

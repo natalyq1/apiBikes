@@ -1,10 +1,16 @@
 package com.bike.retoBikes.Service;
 
+import com.bike.retoBikes.Model.DTOs.CountClient;
+import com.bike.retoBikes.Model.DTOs.CountStatus;
 import com.bike.retoBikes.Model.Reservation;
 import com.bike.retoBikes.Repository.ReservationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,13 +63,42 @@ public class ReservationService {
         }
     }
 
-
     public boolean deleteReservation (int id){
         boolean del = getReservation(id).map(reservation -> {
             reservationRepo.delete(reservation);
             return true;
         }).orElse(false);
         return del;
+    }
+
+    //reto5
+    public List<CountClient> getClientsFrequents(){
+        return reservationRepo.getClientsFrequents();
+    }
+
+    public List<Reservation> getReservationBetweenDates(String dateA, String dateB){
+        SimpleDateFormat parser= new SimpleDateFormat("yyyy-MM-dd");
+        Date a= new Date();
+        Date b= new Date();
+        try {
+            a= parser.parse(dateA);
+            b= parser.parse(dateB);
+        }catch(ParseException error){
+            error.printStackTrace();
+        }
+        //validar
+        if (a.before(b)){
+            return reservationRepo.getReservationBetweenDates(a,b);
+        }else{
+            return new ArrayList<>();
+        }
+    }
+    //reportar estado de canceladas y completadas
+    public CountStatus getReservationStatus(){
+      List<Reservation> reservationsCompleted = reservationRepo.getReservationByStatus("completed");
+        List<Reservation> reservationsCancelled = reservationRepo.getReservationByStatus("cancelled");
+
+        return new CountStatus((long) reservationsCompleted.size(), (long) reservationsCancelled.size());
     }
 
 }

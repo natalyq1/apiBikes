@@ -1,5 +1,7 @@
 package com.bike.retoBikes.Controller;
 
+import com.bike.retoBikes.Model.DTOs.CountClient;
+import com.bike.retoBikes.Model.DTOs.CountStatus;
 import com.bike.retoBikes.Model.Reservation;
 import com.bike.retoBikes.Service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +43,20 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int id){
         return reservationService.deleteReservation(id);
+    }
+
+    //reto5
+    @GetMapping("/report-clients")
+    public List<CountClient> getClientsFrequents(){
+        return reservationService.getClientsFrequents();
+    }
+
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReportReservationBetweenDates(@PathVariable ("dateOne") String dateOne, @PathVariable ("dateTwo") String dateTwo){
+        return reservationService.getReservationBetweenDates(dateOne,dateTwo);
+    }
+    @GetMapping("/report-status")
+    public CountStatus getReportStatus(){
+        return reservationService.getReservationStatus();
     }
 }
